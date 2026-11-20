@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ManyaGram</string>
+    <string name="wordmark_first">manya</string>
+    <string name="wordmark_second">gram</string>
+    <string name="wordmark_dot">.</string>
+    <string name="feed">Лента</string>
+    <string name="admin">Админка</string>
+    <string name="refresh">Обновить</string>
+    <string name="server">Сервер</string>
+    <string name="toggle_bar">Скрыть или показать панель</string>
+    <string name="waiting_title">Маня сейчас спит или гуляет!</string>
+    <string name="waiting_body">Попросите Егора запустить сервер ManyaGram</string>
+    <string name="waiting_hint">Маленькая социальная сеть с большим кошачьим характером</string>
+    <string name="retry">Попробовать снова</string>
+    <string name="url_title">Адрес сервера</string>
+    <string name="url_hint">https://moocher-motive-tremble.ngrok-free.dev/</string>
+    <string name="save">Сохранить</string>
+    <string name="cancel">Отмена</string>
+    <string name="cat_description">Кошка Маня спит на подушке</string>
+</resources>

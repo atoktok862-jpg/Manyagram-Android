@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="240dp"
+    android:height="200dp"
+    android:viewportWidth="240"
+    android:viewportHeight="200">
+
+    <path
+        android:fillColor="@color/brand_soft_2"
+        android:pathData="M120,132 m-96,0 a96,34 0 1,0 192,0 a96,34 0 1,0 -192,0" />
+
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M178,138 c26,-2 34,-22 20,-38"
+        android:strokeColor="@color/cat_fur_shadow"
+        android:strokeLineCap="round"
+        android:strokeWidth="14" />
+
+    <path
+        android:fillColor="@color/cat_fur"
+        android:pathData="M120,82 m-62,0 a62,46 0 1,0 124,0 a62,46 0 1,0 -124,0" />
+
+    <path
+        android:fillColor="@color/cat_fur"
+        android:pathData="M74,72 L70,32 L104,58 Z" />
+    <path
+        android:fillColor="@color/cat_fur"
+        android:pathData="M166,72 L170,32 L136,58 Z" />
+    <path
+        android:fillColor="@color/cat_ear"
+        android:pathData="M78,64 L76,43 L94,57 Z" />
+    <path
+        android:fillColor="@color/cat_ear"
+        android:pathData="M162,64 L164,43 L146,57 Z" />
+
+    <path
+        android:fillColor="@color/cat_fur_light"
+        android:pathData="M120,48 m-42,0 a42,40 0 1,0 84,0 a42,40 0 1,0 -84,0" />
+
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M90,52 q10,9 20,0"
+        android:strokeColor="@color/brand_accent"
+        android:strokeLineCap="round"
+        android:strokeWidth="3" />
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M130,52 q10,9 20,0"
+        android:strokeColor="@color/brand_accent"
+        android:strokeLineCap="round"
+        android:strokeWidth="3" />
+
+    <path
+        android:fillColor="@color/cat_nose"
+        android:pathData="M116,64 L124,64 L120,69 Z" />
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M120,69 q-4,5 -8,1 M120,69 q4,5 8,1"
+        android:strokeColor="@color/brand_accent"
+        android:strokeLineCap="round"
+        android:strokeWidth="2" />
+
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M84,64 L64,60 M84,70 L62,72 M156,64 L176,60 M156,70 L178,72"
+        android:strokeColor="@color/brand_muted"
+        android:strokeLineCap="round"
+        android:strokeWidth="2" />
+
+    <path
+        android:fillColor="@color/cat_fur_light"
+        android:pathData="M96,120 m-13,0 a13,8 0 1,0 26,0 a13,8 0 1,0 -26,0" />
+    <path
+        android:fillColor="@color/cat_fur_light"
+        android:pathData="M144,120 m-13,0 a13,8 0 1,0 26,0 a13,8 0 1,0 -26,0" />
+
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M170,36 h14 l-14,14 h14"
+        android:strokeColor="@color/brand_accent"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="3" />
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M194,14 h10 l-10,10 h10"
+        android:strokeColor="@color/brand_muted"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="2.5" />
+
+</vector>

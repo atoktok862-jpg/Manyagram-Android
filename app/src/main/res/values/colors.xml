@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brand_bg">#FFFFFF</color>
+    <color name="brand_surface">#FFFFFF</color>
+    <color name="brand_soft">#F6F6F4</color>
+    <color name="brand_soft_2">#EEF0EC</color>
+    <color name="brand_ink">#262925</color>
+    <color name="brand_muted">#81847F</color>
+    <color name="brand_border">#DBDBDB</color>
+    <color name="brand_line">#EBEBE8</color>
+    <color name="brand_accent">#405C50</color>
+    <color name="brand_on_accent">#FFFFFF</color>
+    <color name="brand_dark">#171A18</color>
+    <color name="brand_dark_surface">#1C1F1D</color>
+    <color name="brand_dark_soft">#242824</color>
+    <color name="brand_dark_accent">#9EB9A5</color>
+    <color name="brand_dark_ink">#E2E5DF</color>
+    <color name="cat_fur">#EFE6DA</color>
+    <color name="cat_fur_light">#F5EDE4</color>
+    <color name="cat_fur_shadow">#D9C9B5</color>
+    <color name="cat_ear">#D9A79E</color>
+    <color name="cat_nose">#C98F86</color>
+</resources>

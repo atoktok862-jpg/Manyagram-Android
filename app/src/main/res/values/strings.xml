@@ -11,10 +11,12 @@
     <string name="toggle_bar">Скрыть или показать панель</string>
     <string name="waiting_title">Маня сейчас спит или гуляет!</string>
     <string name="waiting_body">Попросите Егора запустить сервер ManyaGram</string>
+    <string name="waiting_body_offline">Лента не открылась. Попробуйте ещё раз.</string>
     <string name="waiting_hint">Маленькая социальная сеть с большим кошачьим характером</string>
     <string name="retry">Попробовать снова</string>
     <string name="url_title">Адрес сервера</string>
-    <string name="url_hint">https://moocher-motive-tremble.ngrok-free.dev/</string>
+    <string name="url_hint">Введите адрес сервера или вернитесь в офлайн-режим</string>
+    <string name="offline_mode">Офлайн (в приложении)</string>
     <string name="save">Сохранить</string>
     <string name="cancel">Отмена</string>
     <string name="cat_description">Кошка Маня спит на подушке</string>

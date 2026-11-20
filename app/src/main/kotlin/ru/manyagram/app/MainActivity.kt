@@ -6,8 +6,6 @@ import android.app.AlertDialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Bitmap
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -24,17 +22,21 @@ import android.webkit.WebViewClient
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.webkit.WebViewAssetLoader
 
 class MainActivity : ComponentActivity() {
 
     companion object {
-        private const val DEFAULT_URL = "https://moocher-motive-tremble.ngrok-free.dev/"
+        private const val OFFLINE_BASE = "https://appassets.androidplatform.net/assets/"
+        private const val DEFAULT_URL = OFFLINE_BASE + "index.html"
+        private const val REMOTE_DEFAULT = "https://moocher-motive-tremble.ngrok-free.dev/"
         private const val PREFS_NAME = "manyagram"
         private const val KEY_SERVER = "server_url"
         private const val SKIP_WARNING_HEADER = "ngrok-skip-browser-warning"
@@ -42,8 +44,10 @@ class MainActivity : ComponentActivity() {
     }
 
     private lateinit var webView: WebView
+    private lateinit var assetLoader: WebViewAssetLoader
     private lateinit var swipeRefresh: SwipeRefreshLayout
     private lateinit var errorView: View
+    private lateinit var errorBody: TextView
     private lateinit var navBar: View
     private lateinit var feedButton: Button
     private lateinit var adminButton: Button
@@ -73,6 +77,7 @@ class MainActivity : ComponentActivity() {
         webView = findViewById(R.id.webView)
         swipeRefresh = findViewById(R.id.swipeRefresh)
         errorView = findViewById(R.id.errorView)
+        errorBody = findViewById(R.id.errorBody)
         navBar = findViewById(R.id.navBar)
         feedButton = findViewById(R.id.feedButton)
         adminButton = findViewById(R.id.adminButton)
@@ -82,6 +87,10 @@ class MainActivity : ComponentActivity() {
                 .getString(KEY_SERVER, DEFAULT_URL) ?: DEFAULT_URL
         )
         currentUrl = serverBase
+
+        assetLoader = WebViewAssetLoader.Builder()
+            .addPathHandler("/assets/", WebViewAssetLoader.AssetsPathHandler(this))
+            .build()
 
         swipeRefresh.setColorSchemeColors(ContextCompat.getColor(this, R.color.brand_accent))
         configureWebView()
@@ -98,7 +107,7 @@ class MainActivity : ComponentActivity() {
             }
         })
 
-        if (isOnline()) load(currentUrl) else showError()
+        load(currentUrl)
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -117,6 +126,13 @@ class MainActivity : ComponentActivity() {
         }
 
         webView.webViewClient = object : WebViewClient() {
+            override fun shouldInterceptRequest(
+                view: WebView?,
+                request: WebResourceRequest?
+            ): WebResourceResponse? {
+                return request?.let { assetLoader.shouldInterceptRequest(it.url) }
+            }
+
             override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
                 val url = request.url.toString()
                 when {
@@ -191,7 +207,11 @@ class MainActivity : ComponentActivity() {
 
         adminButton.setOnClickListener {
             setActiveTab(adminButton)
-            load("${serverBase.trimEnd('/')}/admin")
+            if (isOffline()) {
+                load(OFFLINE_BASE + "admin.html")
+            } else {
+                load("${serverBase.trimEnd('/')}/admin")
+            }
         }
 
         findViewById<Button>(R.id.refreshButton).setOnClickListener { retryLoad() }
@@ -213,7 +233,7 @@ class MainActivity : ComponentActivity() {
         val input = EditText(this)
         input.inputType = InputType.TYPE_TEXT_VARIATION_URI
         input.setSingleLine(true)
-        input.setText(serverBase)
+        input.setText(if (isOffline()) REMOTE_DEFAULT else serverBase)
         val padding = (16 * resources.displayMetrics.density).toInt()
         input.setPadding(padding, padding, padding, padding)
 
@@ -232,6 +252,13 @@ class MainActivity : ComponentActivity() {
                 setActiveTab(feedButton)
                 load(serverBase)
             }
+            .setNeutralButton(R.string.offline_mode) { _, _ ->
+                serverBase = DEFAULT_URL
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit()
+                    .putString(KEY_SERVER, serverBase).apply()
+                setActiveTab(feedButton)
+                load(serverBase)
+            }
             .setNegativeButton(R.string.cancel, null)
             .show()
     }
@@ -241,8 +268,14 @@ class MainActivity : ComponentActivity() {
         currentUrl = url
         pageFailed = false
         swipeRefresh.isRefreshing = true
-        webView.loadUrl(url, mapOf(SKIP_WARNING_HEADER to SKIP_WARNING_VALUE))
+        if (isOffline()) {
+            webView.loadUrl(url)
+        } else {
+            webView.loadUrl(url, mapOf(SKIP_WARNING_HEADER to SKIP_WARNING_VALUE))
+        }
     }
+
+    private fun isOffline(): Boolean = serverBase.startsWith(OFFLINE_BASE, true)
 
     private fun retryLoad() {
         hideError()
@@ -288,15 +321,11 @@ class MainActivity : ComponentActivity() {
         callback.onReceiveValue(uris)
     }
 
-    private fun isOnline(): Boolean {
-        val manager = getSystemService(ConnectivityManager::class.java) ?: return false
-        val network = manager.activeNetwork ?: return false
-        val capabilities = manager.getNetworkCapabilities(network) ?: return false
-        return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-    }
-
     private fun showError() {
         swipeRefresh.isRefreshing = false
+        errorBody.setText(
+            if (isOffline()) R.string.waiting_body_offline else R.string.waiting_body
+        )
         errorView.visibility = View.VISIBLE
     }
 

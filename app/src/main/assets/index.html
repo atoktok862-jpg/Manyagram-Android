@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#ffffff"><meta name="description" content="ManyaGram — маленькая социальная сеть с большим кошачьим характером.">
+  <title>ManyaGram — жизнь в своём ритме</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script src="/assets/js/offline-bridge.js"></script>
+  <script src="/assets/js/app.js" defer></script>
+</head>
+<body>
+  <div id="icons" hidden></div>
+  <aside class="sidebar">
+    <a class="wordmark" href="/assets/index.html" aria-label="ManyaGram, главная">manya<span>gram</span><span class="brand-dot">.</span></a>
+    <div class="side-caption">МАЛЕНЬКАЯ ЖИЗНЬ. БОЛЬШОЙ ХАРАКТЕР.</div>
+    <nav class="main-nav" aria-label="Главная навигация">
+      <button class="nav-item active" data-nav="home"><i data-icon="home"></i><span>Главная</span><span class="nav-pill">4</span></button>
+      <button class="nav-item" data-nav="search"><i data-icon="search"></i><span>Поиск</span></button>
+      <button class="nav-item" data-nav="stories"><i data-icon="stories"></i><span>Истории</span><span class="small-dot"></span></button>
+      <button class="nav-item" data-nav="saved"><i data-icon="bookmark"></i><span>Сохранённое</span></button>
+      <button class="nav-item" data-nav="poems"><i data-icon="book"></i><span>Стихи</span></button>
+      <button class="nav-item" data-nav="profile"><span class="mini-avatar">м</span><span>Мой профиль</span></button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="little-note"><i data-icon="paw"></i><span>Больше лап.<br>Меньше суеты.</span></div>
+      <button class="nav-item" id="settingsBtn"><i data-icon="settings"></i><span>Настройки</span></button>
+      <div class="sidebar-account"><span class="avatar small">д</span><div><strong>Денис</strong><small>Главный кормилец</small></div><span class="account-check">✓</span></div>
+    </div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><div class="breadcrumb">Ваш маленький мир <span>/</span> <strong id="breadcrumbName">Маня</strong></div><div class="topbar-right"><span class="connection"><span id="connectionDot"></span><span id="connectionText">Подключаемся</span></span><button class="icon-button" id="topSearch" aria-label="Открыть поиск"><i data-icon="search"></i></button><button class="icon-button" id="topSettings" aria-label="Настройки оформления"><i data-icon="settings"></i></button><span class="avatar tiny">д</span></div></header>
+    <div class="page-layout">
+      <main class="main-content" id="mainContent">
+        <section class="profile-header" aria-label="Профиль">
+          <div class="profile-avatar-wrap"><div class="profile-avatar"><i data-icon="paw"></i><span id="avatarLetter">м</span></div><span class="avatar-status" title="В сети"></span></div>
+          <div class="profile-info"><div class="profile-name-row"><h1 id="profileUsername">manya</h1><span class="verified" title="Проверенный профиль">✓</span><span class="profile-tag">Личный блог</span><button class="icon-button profile-more" id="profileMore" aria-label="Поделиться профилем"><i data-icon="more"></i></button></div>
+            <div class="profile-stats"><span><strong id="postCount">4</strong> публикации</span><span><strong id="followerCount">1,2 млн</strong> подписчиков</span><span><strong id="followingCount">12</strong> подписок</span></div>
+            <p class="profile-realname" id="profileRealname">Маня · Генеральный директор по тыгыдыку</p><p class="profile-bio" id="profileBio">Главный кормилец и оператор: Денис (папа)</p><p class="profile-location"><i data-icon="pin"></i> Где-то на самом тёплом подоконнике</p>
+            <div class="profile-buttons"><button class="button primary" id="followBtn"><i data-icon="check"></i> <span>Вы подписаны</span></button><button class="button secondary" id="messageBtn"><i data-icon="send"></i> Написать</button></div>
+          </div>
+        </section>
+        <section class="stories-section"><div class="section-heading"><h2>Маленькие моменты</h2><span>За последние 24 часа</span></div><div class="story-list" id="storyList"></div></section>
+        <div class="feed-tabs" role="tablist" aria-label="Содержимое профиля"><button class="feed-tab active" role="tab" aria-selected="true" data-tab="posts"><i data-icon="grid"></i> Публикации <span id="tabCount">4</span></button><button class="feed-tab" role="tab" aria-selected="false" data-tab="poems"><i data-icon="book"></i> Стихи</button><div class="feed-view-label"><i data-icon="layers"></i> Карусель</div></div>
+        <section id="postsSection"><div class="feed-heading"><div><h2 id="feedTitle">Обычная жизнь. Необычная кошка.</h2><p id="feedSubtitle">Сон, вкусняшки и немного важных дел.</p></div><div class="carousel-controls"><button class="icon-button bordered" id="prevPost" aria-label="Предыдущий пост"><i data-icon="left"></i></button><button class="icon-button bordered" id="nextPost" aria-label="Следующий пост"><i data-icon="right"></i></button></div></div><div class="carousel" id="carousel"><div class="carousel-track" id="carouselTrack"></div></div><div class="carousel-footer"><div class="carousel-dots" id="carouselDots"></div><span id="carouselCounter">01 / 04</span></div></section>
+        <section id="poemsSection" class="poems-grid" hidden></section>
+        <footer class="page-footer"><span>© 2026 ManyaGram</span><span>Сделано с заботой. И с шерстью на клавиатуре.</span><span><i data-icon="paw"></i></span></footer>
+      </main>
+      <aside class="right-rail">
+        <div class="today-label"><span id="todayDate">ХОРОШИЙ ДЕНЬ ДЛЯ МУРЧАНИЯ</span><i data-icon="sun"></i></div>
+        <section class="feeding-card"><div class="card-eyebrow"><span class="small-dot"></span> ЗАБОТА В РЕАЛЬНОМ ВРЕМЕНИ</div><div class="feed-cat"><i data-icon="paw"></i></div><h2>Счастье — в полной миске.</h2><p>Немного заботы для той,<br>кто делает ваш день теплее.</p><div class="meter-heading"><span>Уровень сытости</span><strong id="feedLevel">64%</strong></div><div class="meter" role="progressbar" aria-label="Уровень сытости" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64" id="feedingMeter"><span id="feedBar" style="width:64%"></span></div><div class="feed-mood"><span id="feedMood">Довольна жизнью</span><span>мур-р-р</span></div><button class="button primary feed-button" id="feedBtn"><i data-icon="bowl"></i><span>Дать вкусняшку</span></button><p class="feed-hint" id="feedHint"><i data-icon="clock"></i> Одна вкусняшка каждые 30 минут</p></section>
+        <section class="neighbors"><div class="section-heading"><h2>Свои в ленте</h2><button class="text-button" id="allProfiles">Все</button></div><div id="neighborList"></div></section>
+        <section class="quote-card"><span class="quote-mark">“</span><p>Если жизнь даёт тебе<br>коробку — залезай.</p><span>МАНЯ, МЫСЛИТЕЛЬ И КОШКА</span><i data-icon="paw"></i></section>
+        <p class="rail-footer">Маленькая социальная сеть<br>с большим кошачьим характером.<br><span>MANYAGRAM · EST. 2026</span></p>
+      </aside>
+    </div>
+  </div>
+  <dialog id="searchDialog" class="modal"><div class="modal-header"><div><span class="eyebrow">НАЙДИТЕ СВОИХ</span><h2>Кто сегодня в ленте?</h2></div><button class="icon-button" data-close aria-label="Закрыть"><i data-icon="close"></i></button></div><label class="search-input"><i data-icon="search"></i><input id="searchInput" type="search" placeholder="Маня, Барсик, Бобик, Муся…" autocomplete="off"></label><div id="searchResults"></div><p class="muted small-text">Выберите персонажа — его профиль откроется без перезагрузки.</p></dialog>
+  <dialog id="settingsDialog" class="modal"><div class="modal-header"><div><span class="eyebrow">ВАШ ЛИЧНЫЙ РИТМ</span><h2>Настройки</h2></div><button class="icon-button" data-close aria-label="Закрыть"><i data-icon="close"></i></button></div><label class="setting-row"><span><strong>Тёмная тема для папы</strong><small>Мягче для глаз поздним вечером</small></span><input id="themeToggle" type="checkbox" role="switch" class="switch"></label><label class="setting-row"><span><strong>Ваш акцент</strong><small>Цвет активных кнопок и сердечек</small></span><input id="accentPicker" type="color" value="#405c50" aria-label="Цвет акцента"></label><button class="button secondary" id="resetSettings">Восстановить оформление</button><p class="muted small-text">ManyaGram хранит лайки, комментарии и публикации прямо на вашем устройстве.</p></dialog>
+  <dialog id="storyDialog" class="story-modal"><div class="story-progress" id="storyProgress"></div><div class="story-top"><span id="storyAuthor"></span><button class="icon-button" data-close aria-label="Закрыть историю"><i data-icon="close"></i></button></div><button class="story-arrow story-prev" id="storyPrev" aria-label="Предыдущая история"><i data-icon="left"></i></button><div class="story-content"><i data-icon="paw"></i><span class="eyebrow">ОДИН МАЛЕНЬКИЙ МОМЕНТ</span><h2 id="storyTitle"></h2><p id="storyCaption"></p></div><button class="story-arrow story-next" id="storyNext" aria-label="Следующая история"><i data-icon="right"></i></button><button class="button secondary" id="storyProfile">Открыть профиль <i data-icon="right"></i></button></dialog>
+  <dialog id="messageDialog" class="modal"><div class="modal-header"><h2>Написать комментарий</h2><button class="icon-button" data-close aria-label="Закрыть"><i data-icon="close"></i></button></div><p class="muted">Сообщение появится под текущей публикацией от имени Дениса.</p><form id="messageForm"><textarea name="text" placeholder="Передайте немного тепла…" maxlength="500" required rows="4"></textarea><button class="button primary" type="submit">Отправить <i data-icon="send"></i></button></form></dialog>
+  <div id="toast" role="status" class="toast"></div>
+</body></html>
